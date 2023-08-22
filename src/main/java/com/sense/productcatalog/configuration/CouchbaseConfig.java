@@ -20,7 +20,7 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
     private String ip;
 
     @Override
-    protected String getBucketName() {
+    public String getBucketName() {
         return bucketName;
     }
 
@@ -32,7 +32,7 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
     // @Override
     // protected List<String> getBootstrapHosts() {
-    //    return Arrays.asList(“localhost”); // replace with your Couchbase server host
+    //    return Arrays.asList(“localhost”);
     // }
 
     @Override
@@ -50,9 +50,8 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
         return null;
     }
 
-
-    @Override
-    public String typeKey() {
-        return “javaClass”; // specify typeKey if using the Spring Data Couchbase version prior to 4.0
-    }
+    //@Override
+    //public String typeKey() {
+    //    return "javaClass"; // specify typeKey if using the Spring Data Couchbase version prior to 4.0
+    //}
 }

@@ -9,13 +9,16 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+//@SpringBootTest(classes = com.sense.productcatalog.ProductcatalogApplication.class)
 @SpringBootTest
 class ProductRepositoryTest {
 
-    //@Autowired
-    //private ProductRepository productRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
-    private ProductRepository productRepository = new ProductRepository();
+    //public ProductRepositoryTest(ProductRepository productRepository) {
+    //    this.productRepository = productRepository;
+    //}
 
     @Test
     void testProductMapping() {
@@ -26,10 +29,11 @@ class ProductRepositoryTest {
 
         Product savedProduct = productRepository.save(product);
 
+        //Verify Attributes
         assertThat(savedProduct).isNotNull();
         assertThat(savedProduct.getName()).isEqualTo("Product 1");
         assertThat(savedProduct.getDescription()).isEqualTo("Description for Product 1");
         assertThat(savedProduct.getPrice()).isEqualTo(9.99);
-// verify other attributes
+
     }
 }

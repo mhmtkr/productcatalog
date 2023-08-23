@@ -3,12 +3,24 @@ package com.sense.productcatalog.configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
+import org.springframework.data.couchbase.core.convert.CouchbaseCustomConversions;
+import org.springframework.data.couchbase.core.convert.CustomConversions;
 import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
+import org.springframework.data.mapping.context.MappingContext;
+
+import java.util.Collection;
 
 @Configuration
 @EnableCouchbaseRepositories
 public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
+
+    @Bean
+    @Primary
+    public CouchbaseCustomConversions couchbaseCustomConversions() {
+        return this.couchbaseCustomConversions();
+    }
 
     @Value("${couchbase.cluster.bucket}")
     private String bucketName;
@@ -37,17 +49,20 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
     @Override
     public String getConnectionString() {
-        return null;
+
+        return "couchbase://" + ip;
     }
 
     @Override
     public String getUserName() {
-        return null;
+
+        return bucketName;
     }
 
     @Override
     public String getPassword() {
-        return null;
+
+        return password;
     }
 
     //@Override
